@@ -56,12 +56,64 @@ Built for diverse technical teams:
 - PMs & analysts (learning SQL, CLI tools, data pipelines)
 - Anyone building technical skills through hands-on practice
 
+## Plugin Structure
+
+```
+tech-skill-builder/
+  .claude-plugin/plugin.json          # plugin manifest
+  skills/
+    course-creator/                   # course authoring skill
+      SKILL.md
+      references/                     # pedagogical framework, output format, etc.
+    tech-tutor/                       # interactive tutoring skill
+      SKILL.md
+      references/                     # tutoring modes, assessment rubric, etc.
+  agents/
+    course-researcher.md              # fetches URLs, repos, web search
+    module-writer.md                  # writes individual course modules
+  commands/
+    create-course/COMMAND.md          # /create-course entry point
+    learn/COMMAND.md                  # /learn entry point
+```
+
 ## Installation
 
 ```bash
 # Add to your Claude Code plugins
 claude plugin add cemergin/tech-skill-builder
 ```
+
+## Usage
+
+### Creating a Course
+
+```bash
+# Start the interactive course creator
+/create-course Terraform for our platform team
+
+# Or provide a spec file
+/create-course ./courses/terraform-101/course-spec.yaml
+```
+
+The skill will:
+1. Interview you (or read your spec) to understand scope, audience, and depth
+2. Generate a course outline with spiral progression
+3. Research your provided URLs, repos, and docs
+4. Write each module with lessons, exercises, and challenges
+5. Present for your review
+
+### Learning from a Course
+
+```bash
+# Start an interactive tutoring session
+/learn ./courses/terraform-101
+```
+
+The tutor will:
+1. Assess your current level
+2. Suggest an entry point (or let you choose)
+3. Walk you through lessons, exercises, and challenges
+4. Adapt its teaching style to your needs
 
 ## Pedagogical Approach
 
@@ -71,6 +123,18 @@ Each module follows a **micro-progression**:
 3. **Mastery** (Evaluate/Create) — solve a challenge independently
 
 Modules are grouped into **spiral loops** — each loop revisits the domain at a higher complexity level. Early modules have more scaffolding; later modules remove guardrails.
+
+## Voice & Tone
+
+All generated content uses **"The Nerdy Friend"** voice — imagine a colleague who genuinely lights up when talking about this topic. They use analogies, acknowledge when something is confusing, crack jokes about the absurdity of tech, but never make you feel dumb.
+
+## Design Document
+
+See [docs/plans/2026-03-09-tech-skill-builder-design.md](docs/plans/2026-03-09-tech-skill-builder-design.md) for the full design with pedagogical research, architecture decisions, and voice specification.
+
+## Contributing
+
+PRs welcome! If you'd like to improve the pedagogical framework, add new tutoring modes, or enhance the course output format, check the reference docs in `skills/*/references/` for context.
 
 ## License
 
