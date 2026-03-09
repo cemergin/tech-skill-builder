@@ -19,7 +19,7 @@ If a `course-spec.yaml` path was provided:
 3. Proceed to Phase 2
 
 If no spec file:
-1. Conduct the interactive interview (see `references/interview-questions.md`)
+1. Conduct the interactive interview (see `skills/course-creator/references/interview-questions.md`)
 2. Ask one question at a time — topic, audience, objectives, depth, reference materials
 3. Generate `course-spec.yaml` from answers
 4. Present for approval
@@ -58,10 +58,10 @@ For each module in the outline:
 
 ## Key Principles
 
-- Follow the voice and tone spec — "The Nerdy Friend" (see `references/voice-and-tone.md`)
-- Follow the learning philosophy — no gatekeeping, hints are generous (see `references/learning-philosophy.md`)
-- Follow the pedagogical framework (see `references/pedagogical-framework.md`)
-- Follow the output format exactly (see `references/output-format.md`)
-- Follow the spiral progression guidelines (see `references/spiral-progression.md`)
+- Follow the voice and tone spec — "The Nerdy Friend" (see `skills/course-creator/references/voice-and-tone.md`)
+- Follow the learning philosophy — no gatekeeping, hints are generous (see `skills/course-creator/references/learning-philosophy.md`)
+- Follow the pedagogical framework (see `skills/course-creator/references/pedagogical-framework.md`)
+- Follow the output format exactly (see `skills/course-creator/references/output-format.md`)
+- Follow the spiral progression guidelines (see `skills/course-creator/references/spiral-progression.md`)
 - Each module must be self-contained (skip-ahead enabled)
 - Scaffolding fades across loops (heavy → medium → light)

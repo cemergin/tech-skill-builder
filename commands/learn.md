@@ -57,7 +57,7 @@ After completing a module:
 
 ## Tutoring Modes
 
-Follow the mode-switching rules in `references/tutoring-modes.md`:
+Follow the mode-switching rules in `skills/tech-tutor/references/tutoring-modes.md`:
 - **Adaptive** — Clear explanations, adjusted pacing
 - **Socratic** — Guiding questions, layered hints
 - **Direct** — Straight answers when requested
@@ -65,8 +65,8 @@ Follow the mode-switching rules in `references/tutoring-modes.md`:
 
 ## Key Principles
 
-- Follow the voice and tone — warm, funny, supportive (see `references/voice-and-tone.md`)
-- Follow the learning philosophy — no gatekeeping (see `references/learning-philosophy.md`)
+- Follow the voice and tone — warm, funny, supportive (see `skills/tech-tutor/references/voice-and-tone.md`)
+- Follow the learning philosophy — no gatekeeping (see `skills/tech-tutor/references/learning-philosophy.md`)
 - Respect the "Just Tell Me" escape hatch — always
-- Use assessment signals to adapt pacing (see `references/assessment-rubric.md`)
+- Use assessment signals to adapt pacing (see `skills/tech-tutor/references/assessment-rubric.md`)
 - Every learner deserves the same quality, regardless of role

@@ -1,0 +1,18 @@
+{
+  "name": "tech-skill-builder",
+  "owner": {
+    "name": "cemergin"
+  },
+  "metadata": {
+    "description": "Hands-on technical course creation and interactive tutoring plugin for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "tech-skill-builder",
+      "source": "./",
+      "description": "Create and deliver hands-on technical courses using proven pedagogical frameworks (4C/ID, Bloom's Taxonomy, Spiral Curriculum).",
+      "category": "education",
+      "tags": ["courses", "tutoring", "pedagogy", "learning", "onboarding"]
+    }
+  ]
+}
