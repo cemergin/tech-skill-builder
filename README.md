@@ -78,9 +78,40 @@ tech-skill-builder/
 
 ## Installation
 
+### From marketplace (when available)
+
 ```bash
-# Add to your Claude Code plugins
 claude plugin add cemergin/tech-skill-builder
+```
+
+### Local installation
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/cemergin/tech-skill-builder.git
+
+# 2. Copy into Claude Code's plugin cache
+mkdir -p ~/.claude/plugins/cache/local/tech-skill-builder
+cp -R tech-skill-builder/.claude-plugin tech-skill-builder/skills \
+      tech-skill-builder/agents tech-skill-builder/commands \
+      tech-skill-builder/README.md \
+      ~/.claude/plugins/cache/local/tech-skill-builder/
+
+# 3. Register the plugin (add to ~/.claude/plugins/installed_plugins.json)
+# Add this entry to the "plugins" object:
+#   "tech-skill-builder@local": [{
+#     "scope": "user",
+#     "installPath": "~/.claude/plugins/cache/local/tech-skill-builder",
+#     "version": "0.1.0",
+#     "installedAt": "2026-03-09T00:00:00.000Z",
+#     "lastUpdated": "2026-03-09T00:00:00.000Z",
+#     "gitCommitSha": ""
+#   }]
+
+# 4. Enable the plugin
+claude plugin enable tech-skill-builder@local
+
+# 5. Restart Claude Code to load the new skills and commands
 ```
 
 ## Usage
