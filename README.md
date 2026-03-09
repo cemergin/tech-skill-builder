@@ -78,41 +78,112 @@ tech-skill-builder/
 
 ## Installation
 
-### From marketplace (when available)
+### Prerequisites
+
+- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
+
+### How Claude Code plugins work
+
+Claude Code loads plugins from a local cache at `~/.claude/plugins/cache/`. Each plugin provides **skills** (reusable knowledge Claude can invoke), **commands** (slash commands like `/create-course`), and **agents** (specialized sub-agents for parallel work). Plugins are tracked in `~/.claude/plugins/installed_plugins.json`.
+
+There are two ways to get a plugin into that cache:
+
+- **Marketplace install** — Claude Code clones the repo for you, caches it, and registers it automatically. Updates are a single command. This is the standard path for using a plugin.
+- **Local install** — You manually copy files into the cache and register the plugin yourself. This is for plugin developers who want to iterate on files without going through git each time.
+
+---
+
+### Option 1: Marketplace install (recommended)
+
+This registers the GitHub repo as a custom marketplace source, then installs the plugin from it. Claude Code handles cloning, caching, and registration.
 
 ```bash
-claude plugin add cemergin/tech-skill-builder
+# 1. Add this repo as a marketplace source
+#    This tells Claude Code "look here for plugins" — similar to adding an apt repo or npm registry.
+#    It clones the repo into ~/.claude/plugins/cache/ and indexes its plugin.json manifest.
+claude plugin marketplace add https://github.com/cemergin/tech-skill-builder
+
+# 2. Install the plugin from the marketplace you just added
+#    This reads the manifest, copies skills/agents/commands into the cache,
+#    and adds an entry to installed_plugins.json so Claude Code loads it on startup.
+claude plugin install tech-skill-builder
+
+# 3. Restart Claude Code to pick up the new plugin
+#    Plugins are loaded at session start — a restart is required after any install or update.
 ```
 
-### Local installation
+**Updating:**
+
+```bash
+# Pull the latest from the repo and refresh the cached plugin files
+claude plugin marketplace update tech-skill-builder
+claude plugin update tech-skill-builder
+# Then restart Claude Code
+```
+
+---
+
+### Option 2: Local install (for development)
+
+Use this if you're contributing to the plugin or want to test changes before committing. You clone the repo yourself and copy files directly into Claude Code's local plugin cache.
 
 ```bash
 # 1. Clone the repo
 git clone https://github.com/cemergin/tech-skill-builder.git
+cd tech-skill-builder
 
-# 2. Copy into Claude Code's plugin cache
+# 2. Create the local cache directory
+#    ~/.claude/plugins/cache/local/ is where manually-installed plugins live.
+#    Each plugin gets its own subdirectory named after the plugin.
 mkdir -p ~/.claude/plugins/cache/local/tech-skill-builder
-cp -R tech-skill-builder/.claude-plugin tech-skill-builder/skills \
-      tech-skill-builder/agents tech-skill-builder/commands \
-      tech-skill-builder/README.md \
+
+# 3. Copy plugin files into the cache
+#    The key directories:
+#      .claude-plugin/  — contains plugin.json (the manifest that tells Claude Code
+#                         the plugin name, version, and description)
+#      skills/          — SKILL.md files + reference docs that Claude loads as knowledge
+#      agents/          — .md files defining specialized sub-agents
+#      commands/        — COMMAND.md files that register slash commands (/create-course, /learn)
+cp -R .claude-plugin skills agents commands README.md \
       ~/.claude/plugins/cache/local/tech-skill-builder/
 
-# 3. Register the plugin (add to ~/.claude/plugins/installed_plugins.json)
-# Add this entry to the "plugins" object:
-#   "tech-skill-builder@local": [{
-#     "scope": "user",
-#     "installPath": "~/.claude/plugins/cache/local/tech-skill-builder",
-#     "version": "0.1.0",
-#     "installedAt": "2026-03-09T00:00:00.000Z",
-#     "lastUpdated": "2026-03-09T00:00:00.000Z",
-#     "gitCommitSha": ""
-#   }]
+# 4. Register the plugin
+#    Open ~/.claude/plugins/installed_plugins.json and add this entry inside the "plugins" object.
+#    This is the registry file Claude Code reads at startup to know which plugins to load.
+#
+#    "tech-skill-builder@local": [{
+#      "scope": "user",
+#      "installPath": "~/.claude/plugins/cache/local/tech-skill-builder",
+#      "version": "0.1.0",
+#      "installedAt": "<current ISO timestamp>",
+#      "lastUpdated": "<current ISO timestamp>",
+#      "gitCommitSha": ""
+#    }]
 
-# 4. Enable the plugin
-claude plugin enable tech-skill-builder@local
-
-# 5. Restart Claude Code to load the new skills and commands
+# 5. Restart Claude Code to load the new plugin
 ```
+
+**Updating during development:**
+
+After making changes to your local clone, re-copy the changed files:
+
+```bash
+# From the repo root — re-copy whichever directories you changed
+cp -R skills/ ~/.claude/plugins/cache/local/tech-skill-builder/skills/
+# Then restart Claude Code
+```
+
+---
+
+### Verifying the installation
+
+After restarting Claude Code, confirm the plugin is loaded:
+
+```bash
+claude plugin list
+```
+
+You should see `tech-skill-builder` in the output. The `/create-course` and `/learn` commands should now be available.
 
 ## Usage
 
