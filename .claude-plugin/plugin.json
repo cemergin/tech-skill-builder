@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Create and deliver hands-on technical courses using proven pedagogical frameworks (4C/ID, Bloom's Taxonomy, Spiral Curriculum). Two skills: course-creator for authoring courses, tech-tutor for interactive learning.",
   "author": {
-    "name": "cemergin",
-    "email": ""
-  }
+    "name": "cemergin"
+  },
+  "keywords": ["education", "courses", "tutoring", "pedagogy", "learning"]
 }

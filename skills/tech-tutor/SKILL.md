@@ -1,7 +1,6 @@
 ---
 name: tech-tutor
 description: This skill should be used when the user asks to "learn", "study", "go through a course", "start a tutorial", "practice exercises", "do exercises", "learn from a course", "start learning", "continue learning", "tutor me", or wants interactive tutoring through hands-on technical course content created by the course-creator skill.
-version: 0.1.0
 ---
 
 # Tech Tutor

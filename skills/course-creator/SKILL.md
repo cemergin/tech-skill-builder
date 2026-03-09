@@ -1,7 +1,6 @@
 ---
 name: course-creator
 description: This skill should be used when the user asks to "create a course", "build a course", "generate a course", "design a curriculum", "create training material", "build a tutorial", "make a learning path", "create onboarding material", "build exercises", or wants to author hands-on technical courses with progressive exercises and spiral progression.
-version: 0.1.0
 ---
 
 ## Overview
