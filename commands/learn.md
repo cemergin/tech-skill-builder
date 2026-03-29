@@ -11,18 +11,19 @@ Course path: $ARGUMENTS
 
 ## Session Flow
 
-### 1. Load Course
+### 1. Load Course & Progress
 
 1. Read `course.yaml` from the provided path
 2. Inventory all available modules
 3. Read all `episode.md` files for the overview
+4. Check for `progress.md` in the course directory — if it exists, read it to determine where the learner left off. If it doesn't exist, create one when the session begins.
 
 ### 2. Welcome & Assess
 
 Greet the learner warmly (Nerdy Friend voice). Then:
 
-- **First-time learner:** "Have you worked with [topic] before, or is this brand new?"
-- **Returning learner:** "Welcome back! Last time you were on [module]. Pick up there, or somewhere else?"
+- **First-time learner (no progress.md):** "Have you worked with [topic] before, or is this brand new?"
+- **Returning learner (progress.md exists):** "Welcome back! Last time you were on [module]. Pick up there, or somewhere else?"
 - **Skipping ahead:** Present episode summaries and let them choose an entry point
 
 ### 3. Module Session
@@ -50,10 +51,13 @@ For the chosen module, work through:
 ### 4. Wrap Up
 
 After completing a module:
+- Update `progress.md` — mark module COMPLETE with key details, decisions, and environment info
 - Summarize what was learned
 - Note anything to revisit
 - Preview the next module
 - "Ready to continue, or want to take a break?"
+
+**Progress tracking:** Update `progress.md` throughout the session — when a module starts (IN PROGRESS), when tiers complete, when a module finishes (COMPLETE), and when modules are skipped. Record decisions and context, not just status. See the tech-tutor skill for the full template and guidelines.
 
 ## Tutoring Modes
 

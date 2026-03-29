@@ -11,11 +11,13 @@ Interactive tutoring skill that brings course content to life through conversati
 
 Every tutoring session follows a five-step process. Steps 2 and 3 may compress for returning learners who know where they left off.
 
-### Step 1: Load Course
+### Step 1: Load Course & Progress
 
 Read the `course.yaml` file to understand course structure, metadata, and tutoring defaults. Inventory all modules by reading their `episode.md` files. Note the module order, prerequisites, and key concepts for each episode. This context is essential for suggesting entry points, skipping ahead, and connecting concepts across modules.
 
 If the course directory contains multiple courses, ask the learner which course to work through. If only one course exists, proceed directly.
+
+Check for a `progress.md` file in the course directory. If it exists, read it to understand the learner's history — completed modules, current status, and any notes. If it does not exist, create one when the session begins (see Progress Tracking below).
 
 ### Step 2: Welcome & Assess
 
@@ -23,7 +25,7 @@ Greet the learner warmly using the Nerdy Friend voice. Keep it brief — one to 
 
 Gauge experience level with a conversational question:
 - For new learners: "Have you worked with [topic] before, or is this completely new?"
-- For returning learners: "Last time you got through [Module X]. Ready for [Module X+1], or want to review?"
+- For returning learners (progress.md exists): Use the progress file to pick up where they left off. "Last time you got through [Module X]. Ready for [Module X+1], or want to review?"
 
 Determine the appropriate entry point based on the response. See `references/assessment-rubric.md` for detailed calibration signals and Dreyfus-level indicators.
 
@@ -114,6 +116,54 @@ Key principles:
 - Direct about trade-offs and complexity — never pretend something hard is easy
 - Equal respect for every learner regardless of role or starting point
 - No filler phrases, no "Welcome to this lesson", no condescension
+
+## Progress Tracking
+
+Maintain a `progress.md` file in the course directory to persist learner state across sessions. This is the source of truth for where the learner is in the course.
+
+### When to Create
+
+If no `progress.md` exists when a session starts, create one after determining the learner's entry point. Use the template below.
+
+### When to Update
+
+Update `progress.md` at these moments:
+- **Module started:** Set status to `IN PROGRESS` when the learner begins a module
+- **Tier completed:** Note which tiers (lesson, exercise, challenge) are done within the current module
+- **Module completed:** Set status to `COMPLETE` and add a brief summary of key learnings, any notable decisions, or environment details worth remembering
+- **Module skipped:** Set status to `Skipped` with the reason (e.g., "prior knowledge", "taking fast track")
+- **Session end:** Ensure the file reflects the current state before wrapping up
+
+Write updates incrementally — do not wait until the end of the session to update everything at once. If the learner completes a module mid-session and moves to the next, update the completed module immediately.
+
+### Template
+
+```markdown
+# [Course Title] Progress
+
+## Student: [name or identifier]
+## Started: [date]
+
+---
+
+## Module N: [Module Title]
+- **Status:** [NOT STARTED | IN PROGRESS | COMPLETE | Skipped]
+- [Key details: decisions made, environment specifics, things to remember]
+- [For IN PROGRESS: which tier they're on — lesson/exercise/challenge]
+
+---
+
+## Notes
+- [Cross-module observations, things to revisit, environment details]
+```
+
+### Guidelines
+
+- Keep entries concise — bullet points, not paragraphs
+- Record **decisions and context**, not just completion status (e.g., "Chose UFW allow 22 from anywhere due to frequent travel" is useful; "Did the exercise" is not)
+- Include environment details that affect later modules (instance specs, IPs, tool versions, usernames)
+- Add a Notes section at the bottom for cross-cutting observations
+- If the learner provides information about their setup during conversation, capture it in the relevant module entry
 
 ## Additional References
 
