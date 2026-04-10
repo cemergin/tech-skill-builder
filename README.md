@@ -12,7 +12,7 @@ Built on proven pedagogical frameworks:
 
 ## What It Does
 
-Two skills that work together:
+Three skills that work together:
 
 ### Course Creator
 Generate structured, hands-on technical courses from a topic + reference materials.
@@ -20,6 +20,14 @@ Generate structured, hands-on technical courses from a topic + reference materia
 - Ingests URLs, local repos, GitHub repos, and documentation as source material
 - Produces a full course: concept lessons, code-along exercises, and progressive challenges
 - Spiral progression: Foundation → Practice → Mastery loops of increasing complexity
+
+### Guide Creator
+Build large-scale technical reference guides (like the 100x Engineer Guide series) using the **diverge-converge method** with parallel agents.
+- Brainstorm curriculum with fractal spiral structure
+- Dispatch 8-12 parallel agents to write 60+ chapters simultaneously
+- Converge to weave cross-references and ensure consistency
+- Refine with targeted agents, then final polish pass
+- Produces complete guides: 50-80k+ lines across multiple Parts and Phases
 
 ### Tech Tutor
 Interactive tutoring that brings course content to life.
@@ -115,6 +123,20 @@ Go to the **Installed** tab — you should see `tech-skill-builder`. The skills 
 
 ## Usage
 
+### Creating a Guide
+
+```bash
+# Build a comprehensive guide using parallel agents
+/tech-skill-builder:create-guide "100x AI Engineer Guide"
+```
+
+The skill will:
+1. Brainstorm the curriculum structure with spiral progression
+2. Scaffold the directory and initialize git
+3. Dispatch 8-12 parallel agents to write all chapters
+4. Converge to weave cross-references and consistency
+5. Refine and polish with targeted passes
+
 ### Creating a Course
 
 ```bash
@@ -176,14 +198,18 @@ tech-skill-builder/
     course-creator/                     # course authoring skill (model-invoked)
       SKILL.md
       references/                       # pedagogical framework, output format, etc.
+    guide-creator/                      # mega-guide authoring skill (model-invoked)
+      SKILL.md                          # diverge-converge workflow for parallel chapter writing
     tech-tutor/                         # interactive tutoring skill (model-invoked)
       SKILL.md
       references/                       # tutoring modes, assessment rubric, etc.
   agents/
+    chapter-writer.md                   # writes individual guide chapters (parallel dispatch)
     course-researcher.md                # fetches URLs, repos, web search
     module-writer.md                    # writes individual course modules
   commands/
     create-course.md                    # /create-course user-invocable command
+    create-guide.md                     # /create-guide user-invocable command
     learn.md                            # /learn user-invocable command
 ```
 
